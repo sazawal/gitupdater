@@ -1,0 +1,41 @@
+#!/bin/bash
+
+scriptname="gitupdater"
+gitpackagepath="/opt/gitpackages/"
+scriptpath=`dirname $(realpath $0)`
+pathvar="/usr/b"
+
+if [[ $EUID -ne 0 ]]
+then
+   echo "Please run the install script as root"
+else
+	isResp=false
+	while ! $isResp
+	do
+		if [[ ":$PATH:" == *":$pathvar:"* ]]
+		then
+			isResp=true
+		else
+			echo "$pathvar is not in PATH"
+			echo "Please enter a directory in PATH"
+			read pathvar
+		fi
+	done
+
+	if ! [ -d "$gitpackagepath" ]
+	then
+		echo "Creating $gitpackagepath"
+		mkdir "$gitpackagepath"
+	fi
+
+	echo "Moving the script to $gitpackagepath"
+	cp "$scriptpath/$scriptname" "$gitpackagepath"
+	if [ -e "$pathvar/$scriptname" ]
+	then
+		echo "Symbolic link already exists at $pathvar"
+	else
+		echo "Creating symbolic link in $pathvar"
+		ln -s "$gitpackagepath/$scriptname" "$pathvar/$scriptname"
+	fi
+fi
+
