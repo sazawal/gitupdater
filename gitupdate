@@ -1,10 +1,12 @@
 #!/bin/bash
 
+scriptname="gitupdate"
+packagename="gitupdater"
 gitpackagepath="/opt/gitpackages/"
 
 if [[ $EUID -ne 0 ]]
 then
-   echo "gitupdater must be run as root"
+   echo "$scriptname must be run as root"
 else
 	if [ -d "$gitpackagepath" ]
 	then
@@ -18,6 +20,6 @@ else
 		done
 	else
 		echo "$gitpackagepath does not exist"
-		echo "Please reinstall gitupdater"
+		echo "Please reinstall $packagename"
 	fi
 fi
