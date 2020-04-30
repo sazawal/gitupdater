@@ -3,7 +3,7 @@
 scriptname="gitupdater"
 gitpackagepath="/opt/gitpackages/"
 scriptpath=`dirname $(realpath $0)`
-pathvar="/usr/b"
+pathvar="/usr/bin"
 
 if [[ $EUID -ne 0 ]]
 then
