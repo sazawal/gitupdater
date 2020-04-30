@@ -1,6 +1,6 @@
 #!/bin/bash
 
-scriptname="gitupdater"
+scriptname="gitupdate"
 gitpackagepath="/opt/gitpackages/"
 scriptpath=`dirname $(realpath $0)`
 pathvar="/usr/bin"
