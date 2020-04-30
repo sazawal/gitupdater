@@ -1,0 +1,14 @@
+#!/bin/bash
+
+gitpackagepath="/opt/gitpackages/"
+
+if [ -d "$gitpackagepath" ]
+then
+	for i in $(ls -d "$gitpackagepath"*)
+	do
+		echo "Updating $i"
+		git -C "$i" pull
+	done
+else
+	echo "$gitpackagepath does not exist"
+fi
